@@ -1,9 +1,9 @@
-//route GET /api/goals
-
 const setGoals = (req, res) => {
-    if (req.body.text){
-        res.status(400).json({message: 'please add a text'})
-    };
+    if (!req.body.text) {
+        return res.status(400).json({ message: 'Please add a text' });
+    }
+
+    res.status(200).json({ message: 'Goal set successfully', text: req.body.text });
 }
 
 const getGoals = (req, res) => {
