@@ -45,6 +45,7 @@
     "escape-html": "^1.0.3",
     "etag": "^1.8.1",
     "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
     "fill-range": "^7.0.1",
     "finalhandler": "^1.2.0",
     "forwarded": "^0.2.0",
@@ -142,7 +143,6 @@
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js"
-
   },
   "repository": {
     "type": "git",
