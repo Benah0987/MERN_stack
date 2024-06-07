@@ -1,23 +1,30 @@
 const express = require('express');
-const colors = require('colors');
 const dotenv = require('dotenv').config();
-const { errorHandler } = require('./middleware/errorMiddleware')
+const connectDB = require('./config/db');
+require('colors'); // Add this line to require colors
+const { errorHandler } = require('./middleware/errorMiddleware');
 const port = process.env.PORT || 5000;
-const connectDB = require('./config/db')
 
-connectDB()
+connectDB();
 
 const app = express();
 
-// Middleware
+// Middleware to parse JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Use the routes
-app.use('/api/goals', require('./routes/goalRoutes'));
+// Logging middleware for debugging
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    console.log('Headers:', req.headers);
+    console.log('Body:', req.body);
+    next();
+});
+
+// Route handlers
 app.use('/api/users', require('./routes/userRoutes'));
 
-app.use(errorHandler)
+// Error handler
+app.use(errorHandler);
 
-// Start server
 app.listen(port, () => console.log(`Server started on port ${port}`));
