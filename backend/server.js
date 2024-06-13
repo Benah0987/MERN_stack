@@ -23,6 +23,8 @@ app.use((req, res, next) => {
 
 // Route handlers
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/goals', require('./routes/goalRoutes'));
+
 
 // Error handler
 app.use(errorHandler);
